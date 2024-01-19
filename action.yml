@@ -39,10 +39,11 @@ runs:
     - name: Running Prettier
       id: prettier-run
       shell: bash
-      run: delimiter="$(openssl rand -hex 8)"
-            echo 'var<<EOF' >> $GITHUB_OUTPUT
-            echo "prettier-output=$(prettier --list-different --config ${{ inputs.config_path }} --ignore-path ${{ inputs.ignore_path }} --no-error-on-unmatched-pattern ${{ inputs.file_pattern }})" >> $GITHUB_OUTPUT
-            echo 'EOF' >> $GITHUB_OUTPUT
+      run: |
+        delimiter="$(openssl rand -hex 8)"
+        echo 'var<<EOF' >> $GITHUB_OUTPUT
+        echo "prettier-output=$(prettier --list-different --config ${{ inputs.config_path }} --ignore-path ${{ inputs.ignore_path }} --no-error-on-unmatched-pattern ${{ inputs.file_pattern }})" >> $GITHUB_OUTPUT
+        echo 'EOF' >> $GITHUB_OUTPUT
       # run: echo "prettier-output=$(prettier --list-different --config ${{ inputs.config_path }} --ignore-path ${{ inputs.ignore_path }} --no-error-on-unmatched-pattern ${{ inputs.file_pattern }})" >> $GITHUB_OUTPUT
 
     - name: Fail On Error
