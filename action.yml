@@ -50,7 +50,9 @@ runs:
       id: fail-on-error
       if: steps.prettier-run.outputs.prettier-output != 0 && steps.prettier-run.outputs.prettier-output != '' && inputs.fail_on_error
       shell: bash
-      run: exit 1
+      run: |
+        echo "Found errors"
+        exit 1
 
 branding:
   icon: 'search'
